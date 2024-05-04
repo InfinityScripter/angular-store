@@ -1,0 +1,38 @@
+
+
+<div class="post-container">
+
+<div  *ngFor="let post of posts;">
+    <a [routerLink]="['/post', post.slug]">
+
+    <div class="posts">
+        <img class="posts-image" *ngIf="post.pageBlocks[0].image.img; else noImage" [src]="post.pageBlocks[0].image.img" alt="Post image">
+        <ng-template #noImage>
+            <tui-svg src="tuiIconImageLarge"></tui-svg>
+        </ng-template>
+    <h4
+    >{{ post.title }}</h4>
+    <div class="d-flex justify-content-between">
+
+    <p
+    class=" post-release-date tui-text_body-xs"
+    >{{ post.releaseAt|date:'dd MMM yyyy' }}</p>
+    <p
+            class=" post-release-date tui-text_body-xs"
+    >
+        {{post.readingTime}}
+    </p>
+    </div>
+
+    <tui-rating
+            class="rating"
+            [(ngModel)]="post.rating"
+    [readOnly]="true"
+
+    ></tui-rating>
+
+
+    </div>
+    </a>
+</div>
+</div>
